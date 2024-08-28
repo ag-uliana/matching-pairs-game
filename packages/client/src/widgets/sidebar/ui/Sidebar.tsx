@@ -37,6 +37,16 @@ export const Sidebar = () => {
               Ваш профиль
             </NavLink>
           </li>
+          <li>
+            <NavLink to={routePaths[RouteNames.AUTHORIZATION]}>
+              AUTHORIZATION
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to={routePaths[RouteNames.REGISTRATION]}>
+              REGISTRATION
+            </NavLink>
+          </li>
         </ul>
       </nav>
     </aside>
