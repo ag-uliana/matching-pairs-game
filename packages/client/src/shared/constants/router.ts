@@ -25,7 +25,9 @@ interface RoutePaths {
 }
 
 export const routePaths: RoutePaths = {
-  [RouteNames.MAIN]: '/',
+  [RouteNames.AUTHORIZATION]: '/',
+  [RouteNames.REGISTRATION]: '/registration',
+  [RouteNames.MAIN]: '/main',
   [RouteNames.PROFILE]: (id: string) => `/profile/${id}`,
   [RouteNames.FORBIDDEN]: '/forbidden',
   [RouteNames.FORUM]: '/forum',
@@ -33,6 +35,4 @@ export const routePaths: RoutePaths = {
   [RouteNames.LEADERBOARD]: '/leaderboard',
   [RouteNames.START_GAME]: '/startGame',
   [RouteNames.END_GAME]: '/endGame',
-  [RouteNames.AUTHORIZATION]: '/authorization',
-  [RouteNames.REGISTRATION]: '/registration',
 }
