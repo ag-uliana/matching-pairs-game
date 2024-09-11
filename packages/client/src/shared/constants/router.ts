@@ -27,9 +27,9 @@ interface RoutePaths {
 }
 
 export const routePaths: RoutePaths = {
-  [RouteNames.AUTHORIZATION]: '/',
+  [RouteNames.AUTHORIZATION]: '/login',
   [RouteNames.REGISTRATION]: '/registration',
-  [RouteNames.MAIN]: '/main',
+  [RouteNames.MAIN]: '/',
   [RouteNames.PROFILE]: (id: string) => `/profile/${id}`,
   [RouteNames.FORBIDDEN]: '/forbidden',
   [RouteNames.FORUM]: '/forum',
