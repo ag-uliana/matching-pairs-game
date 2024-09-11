@@ -13,6 +13,7 @@ import {
   StartGamePage,
   ForumPage,
   ForumTopicPage,
+  Game,
 } from '@/pages';
 import { ErrorBoundary } from '../../error-boundary';
 
@@ -47,6 +48,10 @@ export const router = createBrowserRouter([
       {
         path: routePaths[RouteNames.START_GAME],
         element: <StartGamePage />,
+      },
+      {
+        path: routePaths[RouteNames.GAME],
+        element: <Game />,
       },
       {
         path: routePaths[RouteNames.END_GAME],
