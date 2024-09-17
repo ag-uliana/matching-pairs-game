@@ -1,5 +1,6 @@
-import dotenv from 'dotenv'
-dotenv.config()
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 export default {
   preset: 'ts-jest',
@@ -11,5 +12,9 @@ export default {
   moduleNameMapper: {
     '\\.s?css$': 'babel-jest',
     '^@/(.*)$': '<rootDir>/src/$1',
-  }
-}
+    '\\.svg$': '<rootDir>/__mocks__/fileMock.js',
+  },
+  transform: {
+    '\\.svg$': 'jest-transformer-svg',
+  },
+};

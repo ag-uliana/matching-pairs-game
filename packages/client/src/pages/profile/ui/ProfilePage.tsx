@@ -1,7 +1,4 @@
-import { useParams } from 'react-router-dom'
+import React from 'react';
+import { ProfileSection } from '@/widgets';
 
-export const ProfilePage = () => {
-  const { id } = useParams<{ id: string }>()
-
-  return <div>ProfilePage {id}</div>
-}
+export const ProfilePage: React.FC = () => <ProfileSection />;

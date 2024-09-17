@@ -1,0 +1,10 @@
+.container {
+  height: 100vh;
+  background: rgb(20 27 80 / 50%);
+
+  > div {
+    width: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
