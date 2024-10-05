@@ -1,26 +1,38 @@
-import { render, fireEvent } from '@testing-library/react';
-import { act } from 'react';
-import { MemoryRouter } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import { configureStore, EnhancedStore } from '@reduxjs/toolkit';
-import { gameReducer } from '@/entities/game';
-import { GameCanvas } from './GameCanvas';
+import { fireEvent, render } from '@testing-library/react'
+import { act } from 'react'
+import { MemoryRouter } from 'react-router-dom'
+import { Provider } from 'react-redux'
+import { configureStore, EnhancedStore } from '@reduxjs/toolkit'
+import { gameReducer } from '@/entities/game'
+import { GameCanvas } from './GameCanvas'
 
 jest.mock('@/entities/game', () => ({
   ...jest.requireActual('@/entities/game'),
   shuffleCards: jest.fn((cards) => cards),
 }));
 
+jest.mock('@/entities/user', () => ({
+  useUserData: jest.fn(() => ({
+    user: {
+      avatar: 'test-avatar-url',
+      first_name: 'Test User',
+      score: 100,
+    },
+  })),
+}));
+
 interface GameState {
   numCards: number;
   emojis: string[];
   gameTime: number;
+  leaders: []
 }
 
 const defaultGameState: GameState = {
   numCards: 6,
   emojis: ['🎉', '😈', '🧠', '🐱', '🐶', '🍕'],
   gameTime: 0,
+  leaders: []
 };
 
 const createTestStore = (customState: Partial<GameState> = {}) =>

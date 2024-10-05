@@ -1,15 +1,10 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '@/shared/lib/store';
-import {
-  checkMatch,
-  drawCards,
-  gameActions,
-  selectData,
-  shuffleCards,
-} from '@/entities/game';
-import { RouteNames, routePaths } from '@/shared/constants/router';
-import cls from './GameCanvas.module.scss';
+import React, { useEffect, useMemo, useRef, useState } from 'react'
+import { useAppDispatch, useAppSelector } from '@/shared/lib/store'
+import { checkMatch, drawCards, fetchNewLeader, gameActions, selectData, shuffleCards } from '@/entities/game'
+import { useNavigate } from 'react-router-dom'
+import { RouteNames, routePaths } from '@/shared/constants/router'
+import { notifications } from '@mantine/notifications'
+import cls from './GameCanvas.module.scss'
 
 export const GameCanvas = () => {
   const dispatch = useAppDispatch();
@@ -55,6 +50,18 @@ export const GameCanvas = () => {
     }
   }, [cards, openCards, matchedCards, cols]);
 
+  const handleEndGame = async () => {
+    try {
+      await dispatch(fetchNewLeader(time)).unwrap();
+      dispatch(gameActions.saveGameTime(time));
+      navigate(routePaths[RouteNames.END_GAME]);
+    } catch (error) {
+      notifications.show({
+        title: 'error',
+        message: 'Ошибка при отправке лидера на сервер',
+      });
+    }
+  };
   const handleClick = (event: React.MouseEvent<HTMLCanvasElement>) => {
     const rect = canvasRef.current!.getBoundingClientRect();
     const x = event.clientX - rect.left;
@@ -75,10 +82,7 @@ export const GameCanvas = () => {
             matchedCards,
             setMatchedCards,
             setOpenCards,
-            () => {
-              dispatch(gameActions.saveGameTime(time));
-              navigate(routePaths[RouteNames.END_GAME]);
-            },
+            () => handleEndGame(),
           );
         }, 1000);
       }
@@ -86,13 +90,13 @@ export const GameCanvas = () => {
   };
 
   return (
-    <canvas
-      ref={canvasRef}
-      className={cls.canvas}
-      width={cols * (cardSize + gap)}
-      height={Math.ceil(numCards / cols) * (cardSize + gap)}
-      onClick={handleClick}
-      data-testid="game-canvas"
-    />
+      <canvas
+        ref={canvasRef}
+        className={cls.canvas}
+        width={cols * (cardSize + gap)}
+        height={Math.ceil(numCards / cols) * (cardSize + gap)}
+        onClick={handleClick}
+        data-testid="game-canvas"
+      />
   );
 };
