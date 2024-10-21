@@ -22,10 +22,12 @@ export const App = () => (
 
         <div className="app">
           <ThemeProvider>
-            <RouterProvider
-              authInitializer={<AuthInitializeProvider />}
-              errorElement={<ErrorBoundary hasError />}
-            />
+            {typeof window !== 'undefined' && (
+              <RouterProvider
+                authInitializer={<AuthInitializeProvider />}
+                errorElement={<ErrorBoundary hasError />}
+              />
+            )}
           </ThemeProvider>
         </div>
       </MantineProvider>
