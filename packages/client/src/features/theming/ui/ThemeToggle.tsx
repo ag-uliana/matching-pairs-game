@@ -1,4 +1,4 @@
-import { Button } from '@mantine/core';
+import { ActionIcon, Tooltip } from '@mantine/core';
 import { showNotification } from '@mantine/notifications';
 import { useAppDispatch, useAppSelector } from '@/shared/lib/store';
 import { saveTheme } from '@/shared/api/themeService';
@@ -6,7 +6,11 @@ import { useUserData } from '@/entities/user';
 import { Theme } from '@/shared/constants/theme';
 import { setTheme, saveThemeToLocalStorage } from '../model';
 
-export const ThemeToggle = () => {
+interface ThemeToggleProps {
+  className?: string;
+}
+
+export const ThemeToggle = ({ className }: ThemeToggleProps) => {
   const dispatch = useAppDispatch();
   const theme = useAppSelector((state) => state.theme.theme);
   const { user } = useUserData();
@@ -30,17 +34,32 @@ export const ThemeToggle = () => {
   };
 
   return (
-    <Button
-      fullWidth
-      radius="md"
-      size="md"
-      mt="20px"
-      color="var(--accent-color)"
-      onClick={handleThemeToggle}
+    <Tooltip
+      label={
+        theme === Theme.DARK
+          ? 'Переключиться на светлую тему'
+          : 'Переключиться на темную тему'
+      }
+      position="bottom"
+      withArrow
     >
-      {theme === Theme.DARK
-        ? 'Переключиться на светлую тему'
-        : 'Переключиться на темную тему'}
-    </Button>
+      <ActionIcon
+        variant="outline"
+        color={theme === Theme.DARK ? 'yellow' : 'var(--accent-color)'}
+        onClick={handleThemeToggle}
+        size="lg"
+        radius="xl"
+        className={className}
+        styles={{
+          root: {
+            borderWidth: '2px',
+          },
+        }}
+      >
+        {theme === Theme.DARK
+          ? String.fromCodePoint(0x2600)
+          : String.fromCodePoint(0x1f319)}
+      </ActionIcon>
+    </Tooltip>
   );
 };
