@@ -27,4 +27,6 @@ module.exports = {
     '\\.svg$': 'jest-transformer-svg',
   },
   setupFiles: ['jest-canvas-mock'],
+  setupFilesAfterEnv: ['<rootDir>/setupTest.js'],
+
 };
