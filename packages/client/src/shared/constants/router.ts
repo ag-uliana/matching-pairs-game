@@ -10,6 +10,7 @@ export enum RouteNames {
   END_GAME = 'endGame',
   AUTHORIZATION = 'authorization',
   REGISTRATION = 'registration',
+  OAUTH = 'oauth',
 }
 
 interface RoutePaths {
@@ -23,7 +24,8 @@ interface RoutePaths {
   [RouteNames.END_GAME]: string;
   [RouteNames.AUTHORIZATION]: string;
   [RouteNames.REGISTRATION]: string;
-  [RouteNames.FORUM_TOPIC]: (id: string) => string;
+  [RouteNames.FORUM_TOPIC]: (id: string | number) => string;
+  [RouteNames.OAUTH]: string;
 }
 
 export const routePaths: RoutePaths = {
@@ -33,9 +35,10 @@ export const routePaths: RoutePaths = {
   [RouteNames.PROFILE]: '/profile',
   [RouteNames.FORBIDDEN]: '/forbidden',
   [RouteNames.FORUM]: '/forum',
-  [RouteNames.FORUM_TOPIC]: (id: string) => `/forum/${id}`,
+  [RouteNames.FORUM_TOPIC]: (id: string | number) => `/forum/${id}`,
   [RouteNames.LEADERBOARD]: '/leaderboard',
   [RouteNames.START_GAME]: '/startGame',
   [RouteNames.GAME]: '/game',
   [RouteNames.END_GAME]: '/endGame',
+  [RouteNames.OAUTH]: '/oauth',
 };

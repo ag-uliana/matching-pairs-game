@@ -5,6 +5,8 @@ import { FullscreenButton, PaperContainer } from '@/shared/ui';
 import { RouteNames, routePaths } from '@/shared/constants/router';
 import { useAppDispatch, useAppSelector } from '@/shared/lib/store';
 import { gameActions, selectData } from '@/entities/game';
+import { NotificationButton } from '@/features/notifications';
+import { ThemeToggle } from '@/features/theming/ui/ThemeToggle';
 
 export const GameSettings = () => {
   const dispatch = useAppDispatch();
@@ -15,7 +17,12 @@ export const GameSettings = () => {
   };
   return (
     <PaperContainer text="Настройки">
-      <Text size="lg" mb="md" color="var(--accent-color)">
+      <Text
+        size="lg"
+        mb="md"
+        className="settings-header-text"
+        color="var(--accent-color)"
+      >
         выберите количество карточек
       </Text>
       <Select
@@ -35,6 +42,8 @@ export const GameSettings = () => {
         </Button>
       </Link>
       <FullscreenButton />
+      <NotificationButton />
+      <ThemeToggle />
     </PaperContainer>
   );
 };
