@@ -4,6 +4,7 @@ import { Title } from '@/shared/ui';
 import { RouteNames, routePaths } from '@/shared/constants/router';
 import { useUserData } from '@/entities/user';
 import { EmojiCard } from '@/shared/ui/emoji-card';
+import { ThemeToggle } from '@/features/theming';
 import cls from './MainPage.module.scss';
 
 const emoji = ['🎉', '😈', '🧠', '😈', '🎉', '🧠'];
@@ -62,6 +63,7 @@ export const MainPage = () => {
           </NavLink>
         </Box>
       </div>
+      <ThemeToggle className={cls.themeToggleContainer} />
     </div>
   );
 };

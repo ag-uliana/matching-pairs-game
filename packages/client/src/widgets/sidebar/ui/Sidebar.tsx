@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { useDisclosure } from '@mantine/hooks';
 import { RouteNames, routePaths } from '@/shared/constants/router';
 import { LogoutModal } from '@/features/auth';
+import { ThemeToggle } from '@/features/theming';
 import cls from './Sidebar.module.scss';
 
 const getNavLinkClass = (isActive: boolean) =>
@@ -51,6 +52,7 @@ export const Sidebar = () => {
           <li className={`${cls.navItem} ${cls.logoutButton}`}>
             <div onClick={open}>Выйти</div>
           </li>
+          <ThemeToggle />
         </ul>
       </nav>
       <LogoutModal opened={opened} onClose={close} />

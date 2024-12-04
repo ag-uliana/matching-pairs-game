@@ -3,5 +3,5 @@ import { saveTheme, getTheme } from './themeController';
 
 export const themeRoutes = Router();
 
-themeRoutes.get('/:userId', getTheme);
-themeRoutes.post('/:userId', saveTheme);
+themeRoutes.post('/get', getTheme);
+themeRoutes.put('/save', saveTheme);

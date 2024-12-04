@@ -7,7 +7,7 @@
   > div {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     flex-wrap: wrap;
   }
 
@@ -25,5 +25,11 @@
       color: var(--background-white);
       background: var(--background-hover);
     }
+  }
+
+  .themeToggleContainer {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
   }
 }
